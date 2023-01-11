@@ -11,5 +11,5 @@ class Queue:
   def dequeue(self):
     return self.items.pop();
 
-  def size():
+  def size(self):
     return len(self.items)

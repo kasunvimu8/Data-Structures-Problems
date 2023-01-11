@@ -35,26 +35,30 @@ class InfixToPostFix:
             while i < s.size():
               item = s.pop()
               if self.is_opening_operator(item):
-                break;
+                break
               out+=str(item)
           else:
-            top_operator = s.peek();
-            if self.check_precedence(top_operator) < self.check_precedence(c):
-               s.push(c)
-            else:
-              out+=str(s.pop())
+            top_operator = s.peek()
+            if top_operator is None:
               s.push(c)
+            else:
+              if self.check_precedence(top_operator) < self.check_precedence(c):
+                s.push(c)
+              else:
+                out+=str(s.pop())
+                s.push(c)
         else:
           out+=str(c)
-
-      if s.size() != 1:
-        return ('Given Notation is Incorrect !')
-      else:
-        return s.pop()
+      
+      j = 0
+      while j < s.size():
+        item = s.pop()
+        out+=str(item)
+      
+      return out
         
 convert_to_postfix = InfixToPostFix('(3+4)*2+1')
 print(convert_to_postfix.convert())
-
 
 # class Stack(list):
 #     push = list.append
