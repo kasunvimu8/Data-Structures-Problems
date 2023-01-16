@@ -31,5 +31,5 @@ class PostfixEvaluator:
       else:
         return s.pop()
         
-postFixEvaluator = PostfixEvaluator('34+2*1+')
-print(postFixEvaluator.evaluate())
+# postFixEvaluator = PostfixEvaluator('34+2*1+')
+# print(postFixEvaluator.evaluate())

@@ -23,16 +23,3 @@ class QueueFromStacks:
 
   def size(self):
     return self.push_stack.size() + self.pop_stack.size()
-    
-[2,22,233,54,56] 
-
-queue = QueueFromStacks()
-print(queue.is_empty())
-queue.enqueue(2)
-queue.enqueue(22)
-queue.enqueue(233)
-print(queue.dequeue())
-queue.enqueue(54)
-queue.enqueue(56)
-print(queue.dequeue())
-print(queue.dequeue())
