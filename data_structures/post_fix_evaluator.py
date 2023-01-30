@@ -12,13 +12,14 @@ class PostfixEvaluator:
       return x in self.operations
 
     def evaluate(self):
+      notationInvalid = 'Given Notation is Incorrect !' 
       s = Stack()
 
       for c in self.input:
         if self.is_operator(c):
           
           if s.size() < 2 :
-            return ('Given Notation is Incorrect !')
+            return notationInvalid
           val = str(s.pop()) +c+ str(s.pop())
           ans = eval(val)
           s.push(ans)
@@ -27,7 +28,7 @@ class PostfixEvaluator:
           s.push(c)
 
       if s.size() != 1:
-        return ('Given Notation is Incorrect !')
+        return notationInvalid
       else:
         return s.pop()
         
