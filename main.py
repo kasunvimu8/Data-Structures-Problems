@@ -10,8 +10,11 @@ def quick_sort(array, start, end):
   i=start
   j=end -1
   
-  while i < (end -1):
-    
+  #Returnning point of the quick sort stack
+  if end <= start:
+    return
+  
+  while True:
     if(array[i] > pivot):
       
       while j != i:
@@ -26,14 +29,15 @@ def quick_sort(array, start, end):
         j=j-1
       
     if(i == j):
-      swap(array, i+1, len(array) -1)
-      quick_sort(array, start, i)
-      quick_sort(array, i+2, end)
+      swap(array, i, end)
+      quick_sort(array, start, i-1)
+      quick_sort(array, i+1, end)
       break
         
     i=i+1
 
   return array
  
-sorted_array = quick_sort([2, 7, 4, 3, 6, 1, 5, 4])
+input = [2, 7, 56, 89, 34, 9, 3, 5, 12, 6, 4]
+sorted_array = quick_sort(input, 0, len(input) -1)
 print(sorted_array)
