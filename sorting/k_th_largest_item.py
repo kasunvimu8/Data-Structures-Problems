@@ -19,8 +19,6 @@ def assign_better_pivot (arr):
   
   swap(arr, mid_index, len(arr)-1)
 
-# start : start element index
-# start : last element index
 def get_partition_index(arr, start, end):
   assign_better_pivot(arr)
   pivot = arr[end]
@@ -55,7 +53,3 @@ def get_largest_k_element(arr, k):
   
   quick_sort(arr, 0, len(input) -1, len(input) - k)
   return arr[len(input) -1 - k]
-
-input = [2, 54, 4, 9, 79, 56, 89, 34, 9, 3, 5, 12, 6, 4]
-largest_k_element = get_largest_k_element(input,3)
-print(largest_k_element)
