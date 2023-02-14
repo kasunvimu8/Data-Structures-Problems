@@ -38,7 +38,23 @@ def swap(arr, index1, index2):
 
 #   return array
 
+def assign_better_pivot (arr):
+  first = arr[0]
+  last = arr[len(arr)-1]
+  middle = arr[(len(arr)-1) // 2]
+  
+  min_value = min(first, middle, last)
+  max_value = max(first, middle, last)
+  mid_index = 0
+  
+  for i in [0, (len(arr)-1) // 2, len(arr)-1]:
+    if(arr[i] <= max_value and arr[i] >= min_value):
+      mid_index = i
+  
+  swap(arr, mid_index, len(arr)-1)
+
 def get_partition_index(arr, start, end):
+  assign_better_pivot(arr)
   pivot = arr[end]
   i = start
   for j in range(start, end):
