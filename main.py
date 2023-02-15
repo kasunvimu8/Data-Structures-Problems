@@ -1,61 +1,26 @@
-def swap(arr, index1, index2):
-  temp = arr[index1]
-  arr[index1] = arr[index2]
-  arr[index2] = temp
-  return arr
-
-def assign_better_pivot (arr):
-  first = arr[0]
-  last = arr[len(arr)-1]
-  middle = arr[(len(arr)-1) // 2]
+def counting_sort(arr, max):
+  output = [0 for i in range(len(arr))]
   
-  min_value = min(first, middle, last)
-  max_value = max(first, middle, last)
-  mid_index = 0
+  # initialize a count array
+  count_array = [0 for i in range(max)]
   
-  for i in [0, (len(arr)-1) // 2, len(arr)-1]:
-    if(arr[i] <= max_value and arr[i] >= min_value):
-      mid_index = i
+  # counting the occurances of inout array
+  for j in range(len(arr)):
+    count_array[arr[j]-1] += 1
   
-  swap(arr, mid_index, len(arr)-1)
-
-# start : start element index
-# start : last element index
-def get_partition_index(arr, start, end):
-  assign_better_pivot(arr)
-  pivot = arr[end]
-  i = start
-  for j in range(start, end):
+  # cumalating the occurances in count array
+  for k in range(1, max):
+    count_array[k] += count_array[k-1]
     
-    if arr[j] <= pivot :
-      swap(arr, i, j)
-      i=i+1
+  # assigning the values
+  for l in range(len(arr)):
+    val = arr[l]
+    index = count_array[val] -1
+    output[index] = val
   
-  swap(arr, i, end)
-  return i
+  return output
 
-def quick_sort(arr, start, end, k):
-  if start < end:
-    partition_index = get_partition_index(arr, start, end)
-    
-    if (k < partition_index) :
-      quick_sort(arr, start, partition_index-1, k)
-    
-    if (k > partition_index) :
-      quick_sort(arr, partition_index+1, end, k)
-    
-    if(k == partition_index) :
-      return arr
-    
-  return arr
-
-def get_largest_k_element(arr, k):
-  if k > len(arr) or k <= 0:
-    return
-  
-  quick_sort(arr, 0, len(input) -1, len(input) - k)
-  return arr[len(input) -1 - k]
-
-input = [2, 54, 4, 9, 79, 56, 89, 34, 9, 3, 5, 12, 6, 4]
-largest_k_element = get_largest_k_element(input,3)
-print(largest_k_element)
+# couting sort is aplicable for a array given range
+input = [2, 3, 1, 9,5,3,9,5,3 ,4, 3]
+counting_sorted = counting_sort(input, 9)
+print(counting_sorted)
