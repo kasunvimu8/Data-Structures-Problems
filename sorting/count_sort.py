@@ -1,3 +1,4 @@
+# not a comparison based seearching algorithm
 def counting_sort(arr, max):
     output = [0 for i in range(len(arr))]
 
