@@ -1,10 +1,10 @@
 import math
-
+from heap.min_heap import MinHeap
 # Tree Based Data Structure
 # complete binary tree
-# parent should be less or equal than it's children (Min Heap)
+# parent should be greater or equal than it's children (Min Heap)
 
-class MinHeap:
+class MaxHeap:
     def __init__(self):
       self.heap = []
     
@@ -37,32 +37,32 @@ class MinHeap:
       parent = self.heap[i]
       
       if not self.is_leaf(i):
-        if parent > self.heap[left_child_index] or (right_child_index +1 < len(self.heap) and parent > self.heap[right_child_index]):
-          if self.heap[left_child_index] > self.heap[left_child_index]:
+        if parent < self.heap[left_child_index] or (right_child_index +1 < len(self.heap) and parent < self.heap[right_child_index]):
+          if parent < self.heap[left_child_index]:
             self.__swap(i, left_child_index)
             self.heapify(left_child_index)
           else:
             self.__swap(i, right_child_index)
             self.heapify(right_child_index)
     
-    def min_heapify(self):
+    def max_heapify(self):
       h = self.heap_height()
       
-      for i in  range(h-1, 0, -1):
+      for i in  range(h-1, -1, -1):
         self.heapify(i)
         
     def insert(self, item):
       self.heap.append(item)
       current = len(self.heap) -1
       
-      while self.heap[current] < self.heap[self.parent_index(current)]:
+      while self.heap[current] > self.heap[self.parent_index(current)]:
         self.__swap(current, self.parent_index(current))
         current = self.parent_index(current)
         
     def remove(self):
       self.__swap(0, len(self.heap)-1)
       min = self.heap.pop()
-      self.min_heapify()
+      self.max_heapify()
       return min
       
     def peek(self):
@@ -88,5 +88,6 @@ min_heap.insert(1)
 min_heap.insert(84)
 
 min_heap.print()
+print('----')
 min_heap.remove()
 min_heap.print()
